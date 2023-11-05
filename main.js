@@ -5,10 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const app = express();
-const portHttp = 80;
-
-const portHttps = 443;
-
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -25,13 +22,10 @@ app.get('/', (req, res) => {
   });
 });
 
-app.listen(portHttp, () => {
+app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-app.listen(portHttps, () => {
-  console.log(`Server is running on port ${port}`);
-});
 
 app.post("/request-code/", async (request, response) => {
     const { qrLink } = request.body;
